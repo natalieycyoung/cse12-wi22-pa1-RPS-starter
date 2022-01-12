@@ -2,8 +2,7 @@
  * Name: Natalie Young
  * ID: A17237090
  * Email: nyoung@ucsd.edu
- * Sources used: Put "None" if you did not have any external help
- * Some example of sources used would be Tutors, Zybooks, and Lecture Slides
+ * Sources used: none
  *
  * This file contains an abstract class RPSAbstract which implements
  * interface RPSInterface and contains fields to store the 'rules',
@@ -96,8 +95,6 @@ public abstract class RPSAbstract implements RPSInterface {
 	 * @param cpuMove - move of the CPU
 	 */
 	public void play(String playerMove, String cpuMove) {
-		// TODO
-		
 		// Use determineWinner to determine who won
 		// Add one to the appropriate statistics
 		int gameOutcome = determineWinner(playerMove, cpuMove);
