@@ -104,7 +104,11 @@ public abstract class RPSAbstract implements RPSInterface {
 			System.out.println(INVALID_INPUT);
 			return;
 		}
-		else if (gameOutcome == TIE_OUTCOME)
+		
+
+		System.out.printf(CPU_MOVE, cpuMove);
+
+		if (gameOutcome == TIE_OUTCOME)
 		{
 			numGames += 1;
 			numTies += 1;

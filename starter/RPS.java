@@ -34,7 +34,7 @@ public class RPS extends RPSAbstract {
 	public int determineWinner(String playerMove, String cpuMove)
 	{
 		// Invalid move
-		if (!isValidMove(playerMove))
+		if (!isValidMove(playerMove) || !isValidMove(cpuMove))
 		{
 			return INVALID_INPUT_OUTCOME;
 		}
@@ -76,18 +76,40 @@ public class RPS extends RPSAbstract {
 		} else {
 			moves = RPS.DEFAULT_MOVES;
 		}
+		
 		// Create new game and scanner
 		RPS game = new RPS(moves);
 		Scanner in = new Scanner(System.in);
 
-		// While user does not input "q", play game
-		System.out.println("Game not yet implemented.");
+		String playerMove;
+		String cpuMove;
 		
-		// TODO: Insert the code to play the game. 
-		// See the writeup for an example of the game play.
-		// Hint: call the methods we/you have already written 
-		// to do most of the work!
+		// While user does not input "q", play game
+		do {
+			System.out.println(PROMPT_MOVE);
+		
+			playerMove = in.nextLine();
+			cpuMove = game.genCPUMove();
 
+			while (!game.isValidMove(playerMove) && !playerMove.equals("q"))
+			{
+				System.out.println(INVALID_INPUT);
+				System.out.println(PROMPT_MOVE);
+				playerMove = in.nextLine();
+				cpuMove = game.genCPUMove();
+			}
+			
+
+			if (!playerMove.equals("q") && game.isValidMove(playerMove))
+			{
+				game.play(playerMove, cpuMove);
+			}
+	
+		} while (!playerMove.equals("q"));
+
+//		System.out.println(THANKS);
+
+		game.end();
 
 		in.close();
 	}
