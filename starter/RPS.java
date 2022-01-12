@@ -33,27 +33,32 @@ public class RPS extends RPSAbstract {
 	 */
 	public int determineWinner(String playerMove, String cpuMove)
 	{
-		// TODO
 		// Invalid move
 		if (!isValidMove(playerMove))
 		{
-			return -1;
+			return INVALID_INPUT_OUTCOME;
 		}
 		// Tie
 		else if (playerMove.equals(cpuMove))
 		{
-			return 0;
+			return TIE_OUTCOME;
 		}
-		
-		for (int i = 0; i < possibleMoves.length; i ++)
+		// Compares move indices to get player win or cpu win
+		for (int i = 0; i < possibleMoves.length; i++)
 		{
-			if (possibleMoves[i].equals(playerMove) && possibleMoves[i + 1].equals(cpuMove))
+			int nextIndex = (i + 1 < possibleMoves.length) ? (i + 1) : 0;
+
+			if (possibleMoves[i].equals(playerMove) && possibleMoves[nextIndex].equals(cpuMove))
 			{
-				return 1;
+				return PLAYER_WIN_OUTCOME;
+			}
+			else if (possibleMoves[i].equals(cpuMove) && possibleMoves[nextIndex].equals(playerMove))
+			{
+				return CPU_WIN_OUTCOME;
 			}
 		}
 
-		return 10;
+		return TIE_OUTCOME;
 	}
 
 	/**
