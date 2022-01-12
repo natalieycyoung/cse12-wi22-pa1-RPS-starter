@@ -34,7 +34,26 @@ public class RPS extends RPSAbstract {
 	public int determineWinner(String playerMove, String cpuMove)
 	{
 		// TODO
-		return 0;  // replace this when you implement the method
+		// Invalid move
+		if (!isValidMove(playerMove))
+		{
+			return -1;
+		}
+		// Tie
+		else if (playerMove.equals(cpuMove))
+		{
+			return 0;
+		}
+		
+		for (int i = 0; i < possibleMoves.length; i ++)
+		{
+			if (possibleMoves[i].equals(playerMove) && possibleMoves[i + 1].equals(cpuMove))
+			{
+				return 1;
+			}
+		}
+
+		return 10;
 	}
 
 	/**

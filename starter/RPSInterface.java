@@ -1,5 +1,6 @@
 /**
- * An interface that specifies the functionality of RPS (Rock Paper Scissors)
+ * An interface that specifies the functionality of RPS (Rock Paper
+ * Scissors)
  */
 public interface RPSInterface {
 	
@@ -25,9 +26,9 @@ public interface RPSInterface {
 	public boolean isValidMove(String move);
 
 	/**
-	 * Play one game of RPS.
-	 * Also adds appropriately to the number of games, wins and ties played.
-	 * and records the most recent moves.
+	 * Play one game of RPS, adds appropriately to the number of
+	 * games, wins, and ties played, and records the most recent
+	 * moves.
 	 * @param playerMove - move of the player
 	 * @param cpuMove - move of the CPU
 	 */

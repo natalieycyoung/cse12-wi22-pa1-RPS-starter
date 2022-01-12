@@ -76,28 +76,59 @@ public abstract class RPSAbstract implements RPSInterface {
 	 * @return true if the move is valid, false otherwise
 	 */
 	public boolean isValidMove(String move) {
-		// TODO
-		// Use a loop here
+		for (String possibleMove : possibleMoves)
+		{
+			if (possibleMove.equals(move))
+			{
+				return true;
+			}
+		}
 
-		return true;  // dummy return value so code compiles.
+		return false;
 	}
 	
 	/**
-	 * Play one game of RPS.
-	 * Also adds appropriately to the number of games, wins and ties played.
-	 * and records the most recent moves.
+	 * Play one game of RPS, adds appropriately to the number of
+	 * games, wins, and ties played, and records the most recent
+	 * moves.
+	 *
 	 * @param playerMove - move of the player
 	 * @param cpuMove - move of the CPU
 	 */
 	public void play(String playerMove, String cpuMove) {
-	   // TODO
-	   
-	   // Use determineWinner to determine who won
+		// TODO
+		
+		// Use determineWinner to determine who won
+		// Add one to the appropriate statistics
+		int gameOutcome = determineWinner(playerMove, cpuMove);
 
-	   // Record the moves made
+		if (gameOutcome == INVALID_INPUT_OUTCOME)
+		{
+			System.out.println(INVALID_INPUT);
+			return;
+		}
+		else if (gameOutcome == TIE_OUTCOME)
+		{
+			numGames += 1;
+			numTies += 1;
+			System.out.println(TIE);
+		}
+		else if (gameOutcome == PLAYER_WIN_OUTCOME)
+		{
+			numGames += 1;
+			numPlayerWins += 1;
+			System.out.println(PLAYER_WIN);
+		}
+		else if (gameOutcome == CPU_WIN_OUTCOME)
+		{
+			numGames += 1;
+			numCPUWins += 1;
+			System.out.println(CPU_WIN);
+		}
 
-	   // Add one to the appropriate statistics
-
+		// Record the moves made
+		playerMoves[numGames - 1] = playerMove;
+		cpuMoves[numGames - 1] = cpuMove;
 	}  
 	
 
@@ -134,7 +165,7 @@ public abstract class RPSAbstract implements RPSInterface {
 		// Print system and user moves
 		for (int i = numGames - 1 ; i >= printTo; i--) {
 			System.out.printf(CPU_PLAYER_MOVES, this.cpuMoves[i],
-				this.playerMoves[i]);   
+				this.playerMoves[i]);	
 		}
 
 		System.out.printf(OVERALL_STATS, cpuWinPercent, playerWinPercent,
